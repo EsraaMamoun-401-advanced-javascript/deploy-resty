@@ -20,7 +20,7 @@
   "bugs": {
     "url": "https://github.com/EsraaMamoun-401-advanced-javascript/deploy-resty/issues"
   },
-  "homepage": "https://esraamamoun-401-advanced-javascript.github.io/deploy-resty/",
+  "homepage": "https://5efa451abdbaf90008f9f59b--deploynetlify.netlify.app/",
   "dependencies": {
     "build": "^0.1.4",
     "enzyme": "^3.11.0",
