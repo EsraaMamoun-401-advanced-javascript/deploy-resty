@@ -1,5 +1,5 @@
 import React from 'react';
-
+// import ReactJson from 'react-json-view';
 import './form.scss';
 
 class Form extends React.Component {
@@ -9,28 +9,42 @@ class Form extends React.Component {
     this.state = {
       url: '',
       method: '',
-      request: {},
     };
   }
 
-  handleSubmit = e => {
-    e.preventDefault();
+  handleSubmit = async event => {
+    event.preventDefault();
 
-    if ( this.state.url && this.state.method ) {
+    if (this.state.url && this.state.method) {
 
-      // Make an object that would be suitable for superagent
-      let request = {
-        url: this.state.url,
-        method: this.state.method,
-      };
+      // let request = {
+      //   url: this.state.url,
+      //   method: this.state.method,
+      // };
 
-      // Clear old settings
-      let url = '';
-      let method = '';
+      // let url = '';
+      // let method = '';
 
-      this.setState({request, url, method});
-      e.target.reset();
+      let raw = await fetch(this.state.url)
 
+      let resBody = await raw.json();
+      let count = resBody.count;
+      let results = resBody.results;
+
+      // let headers = {};
+      // raw.headers.forEach((val, key) => {
+      //   headers[key] = val;
+      // })
+
+      // let headers = { 'content-type': raw.headers.get('Content-Type') };
+
+      let headers = {};
+      for (let entry of raw.headers.entries()) {
+        headers[entry[0]] = entry[1];
+      }
+
+
+      this.props.handler(count, headers, results);
     }
 
     else {
@@ -38,13 +52,13 @@ class Form extends React.Component {
     }
   }
 
-  handleChangeURL = e => {
-    const url = e.target.value;
-    this.setState({url});
+  handleChangeURL = event => {
+    const url = event.target.value;
+    this.setState({ url });
   };
 
-  handleChangeMethod = e => {
-    const method = e.target.id;
+  handleChangeMethod = event => {
+    const method = event.target.id;
     this.setState({ method });
   };
 
@@ -64,10 +78,10 @@ class Form extends React.Component {
             <span className={this.state.method === 'delete' ? 'active' : ''} id="delete" onClick={this.handleChangeMethod}>DELETE</span>
           </label>
         </form>
-        <section className="results">
+        {/* <section className="results">
           <span className="method">{this.state.request.method}</span>
           <span className="url">{this.state.request.url}</span>
-        </section>
+        </section> */}
       </>
     );
   }
