@@ -1,14 +1,23 @@
 import React from 'react';
+import { Link, NavLink } from 'react-router-dom';
 import './header.scss';
 
-class Header extends React.Component {
-  render() {
-    return (
-      <header>
-        <h1>RESTy</h1>
-      </header>
-    );
-  }
+const Header = () => {
+  return (
+    <header>
+      <h1>RESTy</h1>
+      <nav>
+        <ul>
+          <li>
+            <Link to="/">Home</Link>
+          </li>
+          <li>
+            <NavLink to="/hestory" activeClassName="hestory">History</NavLink>
+          </li>
+        </ul>
+      </nav>
+    </header>
+  );
 }
 
 export default Header;
