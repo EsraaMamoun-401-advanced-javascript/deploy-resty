@@ -7,10 +7,14 @@ class Home extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
+      loading: false,
       count: 0,
       headers: [],
       results: []
     };
+  }
+  toggleLoading = () => {
+    this.setState({ loading: !this.state.loading })
   }
   handleForm = (count, headers, results) => {
     this.setState({ count, headers, results });
@@ -18,8 +22,8 @@ class Home extends React.Component {
   render() {
     return (
       <React.Fragment>
-        <Form handler={this.handleForm} />
-        <Results count={this.state.count} headers={this.state.headers} results={this.state.results} />
+        <Form handler={this.handleForm} toggleLoading={this.toggleLoading} />
+        <Results loading={this.state.loading} count={this.state.count} headers={this.state.headers} results={this.state.results} />
       </React.Fragment>
     );
   }

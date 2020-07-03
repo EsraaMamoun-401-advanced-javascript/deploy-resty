@@ -31,6 +31,10 @@
 - enzyme 
 - enzyme-adapter-react-16
 
+### .env
+- REACT_EDITOR=atom
+- SKIP_PREFLIGHT_CHECK=true
+
 #### How to initialize/run your application (where applicable)
 
 - `npm run start`
@@ -39,7 +43,7 @@
 - console.log
 
 * How do you run tests?
- > - `npm test` 
+ > - `npm test`
 
 #### UML
 ![UML](./img/UML1.png)

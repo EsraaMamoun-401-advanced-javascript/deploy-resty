@@ -1,24 +1,26 @@
 import React from 'react';
+// import { If, Then, Else } from '../if/if';
+// import Form from '../form/form';
 
 class History extends React.Component {
-    // constructor(props) {
-    //     super(props);
-    //     this.state = {
-    //         history: [],
-    //     };
-    // }
-    // handleHistory = () => {
+    constructor(props) {
+        super(props);
+        this.state = {
+            // history: [],
+        };
+    }
+    // handleHistory = (history) => {
     //     this.setState({ history });
     // }
+
     render() {
         return (
-            // <>
-            //     <Form handlerH={this.handleHistory} />
-            //     <Results history={this.state.history} />
-            // </>
-            <div>
-                This is history content!!!
-            </div>
+            <>
+                <div>
+                <h2>History Content.................</h2>
+                {/* <Form historyF={this.handleHistory} /> */}
+                </div>
+            </>
         )
     }
 }
