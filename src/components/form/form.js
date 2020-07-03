@@ -1,5 +1,5 @@
 import React from 'react';
-// import ReactJson from 'react-json-view';
+
 import './form.scss';
 
 class Form extends React.Component {
@@ -9,12 +9,13 @@ class Form extends React.Component {
     this.state = {
       url: '',
       method: '',
+      history: [],
     };
   }
 
   handleSubmit = async event => {
     event.preventDefault();
-
+    this.props.toggleLoading();
     if (this.state.url && this.state.method) {
 
       // let request = {
@@ -45,6 +46,36 @@ class Form extends React.Component {
 
 
       this.props.handler(count, headers, results);
+      this.props.toggleLoading();
+
+
+      let localStorageObj = {};
+      if (!this.state.url.includes(localStorageObj)) {
+        localStorageObj[this.state.method] = this.state.url;
+
+        let stringMethod_Url = JSON.stringify(localStorageObj);
+        localStorage.setItem('Method_Url', stringMethod_Url);
+
+        let retrievedObject = localStorage.getItem('Method_Url');
+
+        JSON.parse(retrievedObject);
+
+        //   let result = [];
+        //   for (const method in this.localStorageObj) {
+        //     console.log(`${method}: ${this.localStorageObj[method]}`);
+        //     // obj[method] = this.localStorageObj[method];
+        //     result.push(`${method}: ${this.localStorageObj[method]}`);
+        //   }
+        //   this.setState({result});
+
+        
+        // let listHistory = this.state.history;
+        // listHistory = localStorageObj;
+        // let resultsH = listHistory;
+        // // this.props.historyF(resultsH);
+        // console.log(resultsH);
+        // this.setState({ resultsH });
+      }
     }
 
     else {
@@ -61,11 +92,11 @@ class Form extends React.Component {
     const method = event.target.id;
     this.setState({ method });
   };
-
+  
   render() {
     return (
       <>
-        <form onSubmit={this.handleSubmit}>
+        <form onSubmit={this.handleSubmit} >
           <label >
             <span>URL: </span>
             <input name='url' type='text' onChange={this.handleChangeURL} />

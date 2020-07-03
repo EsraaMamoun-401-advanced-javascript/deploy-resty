@@ -5,6 +5,7 @@
   "main": "src/index.js",
   "scripts": {
     "start": "react-scripts start",
+    "lint": "eslint --fix --ext .js,.jsx .",
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject",
@@ -26,6 +27,7 @@
     "dotenv": "^8.2.0",
     "enzyme": "^3.11.0",
     "enzyme-adapter-react-16": "^1.15.2",
+    "eslint": "^7.3.1",
     "node-sass": "^4.14.1",
     "react": "16.13.1",
     "react-dom": "16.13.1",
